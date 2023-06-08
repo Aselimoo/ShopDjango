@@ -1,8 +1,6 @@
 from django.forms import ValidationError
-<<<<<<< HEAD
-=======
 from random import choice
->>>>>>> 0faa800 (Auth-User)
+
 
 def valid_price(price):
     if int(price) <= 0:
@@ -10,13 +8,6 @@ def valid_price(price):
     
     if not price.isdigit():
         raise ValidationError("Цена должна состоять только из чисел")
-
-<<<<<<< HEAD
-    # num = "0123456789"
-    # for i in price:
-    #     if i not in num:
-    #         raise ValidationError("Цена должна состоять только из чисел")
-=======
 
 len_phone_text = [
     "Достаточная длина номера телефона - не менее 12 символов",
@@ -70,4 +61,4 @@ def validate_phone_number(phone_number: str):
     for i in phone_number:
         if i not in numbers:
             raise ValidationError(choice(exception_phone_text).format(i))
->>>>>>> 0faa800 (Auth-User)
+

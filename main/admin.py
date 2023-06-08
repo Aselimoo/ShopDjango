@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Product, Category, Profile
+from django.utils.safestring import mark_safe
 # Register your models here.
 
 
@@ -20,3 +21,9 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ['user', 'description', 'birth_data', 'phone']
     list_filter = ['user']
     search_fields = ['user']
+
+    def get_image(self, obj):
+        if obj.image:
+            return mark_safe(f'<img src="{obj.image.url}" width="150px">')
+        return "Not image"
+        

@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-from django.forms import ModelForm, TextInput, Textarea, FileInput, Select
-from .models import Category, Product
-=======
-from django.forms import ModelForm, TextInput, Textarea, FileInput, Select, EmailInput, PasswordInput
-from .models import Category, Product
+from django import forms 
+from django.forms import ModelForm, TextInput, Textarea, FileInput, Select, EmailInput, PasswordInput, DateInput
+from .models import Category, Product, Profile
 from django.contrib.auth.models import User
 
 
@@ -37,7 +34,6 @@ class UserForm(ModelForm):
             }),
         }
 
->>>>>>> 0faa800 (Auth-User)
 
 class CategoryForm(ModelForm):
     class Meta:
@@ -83,5 +79,34 @@ class ProductForm(ModelForm):
             'category': Select(attrs={
                 "style": "margin: 20px; width: 1190px;",
                 'class': 'form-control form-control-dark'
+            }),
+        }
+
+
+class ProfileForm(ModelForm):
+    # user = forms.ModelChoiceField(queryset=User.objects.all())
+
+    class Meta:
+        model = Profile
+        fields = ['image', 'description', 'birth_data', 'phone']
+        widgets = {
+            "image": FileInput(attrs={
+                "style": "width: 145px; margin: 40px",
+                "class": "form-control",
+                "placeholder": "Изображение",
+            }),
+            "description": Textarea(attrs={
+                "rows": "3",
+                "class": "form-control",
+                "placeholder": "О себе",
+            }),
+            "birth_data": DateInput(attrs={
+                "class": "form-control",
+                "type": "date",
+                "placeholder": "Дата рождения",
+            }),
+            "phone": TextInput(attrs={
+                "class": "form-control",
+                "placeholder": "Номер телефона",
             }),
         }
