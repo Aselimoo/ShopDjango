@@ -119,9 +119,14 @@ def UserProfileView(request):
 
 def UserEditProfileView(request):
     if request.user.is_authenticated:
-        profile = Profile.objects.all()
         user = request.user.profile
         if request.method == "POST":
+            new_email = request.POST.get('email')
+            if new_email:
+                user_email = request.user
+                user_email.email = new_email
+                user_email.save()
+
             form = ProfileForm(request.POST, request.FILES, instance=user)
             if form.is_valid():
                 form.save()
@@ -132,12 +137,13 @@ def UserEditProfileView(request):
         
         context = {
             'form': form,
-            'profile': profile,
         }
         return render(request, "Profile/editprofile.html", context=context)
     else:
         return redirect("/signin")
+    
 
-
-
-
+def SettingsView(request):
+    if request.user.is_authenticated:
+        return render(request, 'settings/settings.html')
+    

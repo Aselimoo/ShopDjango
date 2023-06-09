@@ -23,7 +23,7 @@ class UserForm(ModelForm):
                 "aria-describedby": "addon-wrapping",
             }),
             "email": EmailInput(attrs={
-                "class": "form-control text-bg-dark",
+                "class": "form-control",
                 "aria-label": "E-mail",
                 "aria-describedby": "inputGroup-sizing-default",
             }),
@@ -102,7 +102,7 @@ class ProfileForm(ModelForm):
             }),
             "birth_data": DateInput(attrs={
                 "class": "form-control",
-                "type": "date",
+                "min": "1900-01-01",
                 "placeholder": "Дата рождения",
             }),
             "phone": TextInput(attrs={

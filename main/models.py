@@ -41,3 +41,5 @@ class Profile(models.Model):
     phone = models.CharField(max_length=20, verbose_name="Номер телефона", validators=[validate_phone_number], 
         blank=True, null=True)
 
+
+# <a href="https://www.instagram.com/aselimoo" target="_blank"><i class="bi bi-instagram"></i>Instagram</i></a>
